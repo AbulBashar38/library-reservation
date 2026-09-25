@@ -14,11 +14,13 @@ export default function FeaturedBooks() {
           description="Hand-picked titles our members keep coming back for. Reserve yours before they are gone."
         />
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {books.map((book, i) => (
-            <Reveal key={book.id} delay={i * 0.1} className="h-full">
-              <BookCard {...book} />
-            </Reveal>
-          ))}
+          {books
+            .filter((book) => book.featured)
+            .map((book, i) => (
+              <Reveal key={book.id} delay={i * 0.1} className="h-full">
+                <BookCard {...book} />
+              </Reveal>
+            ))}
         </div>
       </Container>
     </section>

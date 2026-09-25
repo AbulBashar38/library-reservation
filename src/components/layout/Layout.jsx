@@ -15,7 +15,8 @@ export default function Layout({ children }) {
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
-        <Toaster position="top-right" richColors closeButton />
+        {/* Offset keeps toasts below the sticky navbar */}
+        <Toaster position="top-right" offset={{ top: 80 }} mobileOffset={{ top: 72 }} richColors closeButton />
       </div>
     </MotionConfig>
   )
