@@ -1,8 +1,60 @@
-# Library Book Reservation System
+# LibReserve: Library Book Reservation System
 
-A small, frontend-only web app for reserving library books. It has two connected pages: a landing page that introduces the library, and a reservation form where a visitor can request a book.
+LibReserve is a responsive web app that lets library members reserve a book online and pick it up at the front desk, instead of queuing or phoning in. It has two connected pages: a **landing page** that introduces the library and its featured books, and a **reservation page** where the user fills in a validated form and gets an on-screen confirmation.
+
+It is built with React, React Router, Tailwind CSS, Framer Motion, React Hook Form, Zod, and Sonner. It runs entirely in the browser, with no backend.
 
 This is an individual lab assignment for the **Information System Design and Software Engineering Lab** course. The goal is to turn a system's user requirements into a working, responsive UI.
+
+---
+
+## Screenshots
+
+### 1. Hero section
+
+The first thing a visitor sees: a clear headline, a primary **Book Now** button and a secondary **Learn More** button, animated floating book covers, and a strip of key numbers.
+
+![Hero section of the landing page](docs/screenshots/1-hero.png)
+
+### 2. Featured books
+
+Cards for popular books, each with a cover, genre, rating, short description, live availability, and a **Reserve** button. Clicking **Reserve** opens the form with that book already selected. Books with no copies left offer a waitlist instead.
+
+![Featured books section](docs/screenshots/2-featured-books.png)
+
+### 3. Reservation form
+
+An 11-field form in three numbered steps, with a live preview of the chosen book beside it. Errors appear directly under the field they belong to. In this screenshot, an invalid email and a return date set before the pickup date are both flagged.
+
+![Reservation form showing validation errors](docs/screenshots/3-reservation-form.png)
+
+### 4. Reservation confirmed
+
+After a valid submission, a success toast appears and the form is replaced by a confirmation with an animated tick, a reference number, and a summary of everything the user entered.
+
+![Reservation confirmation with summary](docs/screenshots/4-reservation-confirmed.png)
+
+---
+
+## About the Project
+
+**The problem:** borrowing a popular book usually means visiting the library and hoping a copy is on the shelf. LibReserve lets members check what is available, reserve it online in under a minute, and collect it within 48 hours of their chosen pickup date.
+
+**How a visitor uses it:**
+
+1. Land on the Home page, read about the services, and browse the featured books.
+2. Click **Book Now** or a book's **Reserve** button to open the reservation form.
+3. Enter their details, choose the book, copies, format, and pickup and return dates, and accept the terms.
+4. Submit. If anything is wrong, each problem is explained next to its field. If everything is valid, they see a confirmation with a reference number and a summary of their reservation.
+
+**Highlights:**
+
+- **Responsive:** works on phones, tablets, and desktops, with a hamburger menu on small screens.
+- **Validation in one place:** all form rules live in a single Zod schema, including cross-field rules such as "return date must be after pickup date".
+- **Clear feedback:** an error message under each invalid field, toast notifications, and a loading state on submit.
+- **Polished motion:** page transitions, scroll-reveal cards, hover effects, and an animated success tick, all switched off for users who prefer reduced motion.
+- **Accessible:** labelled inputs, errors linked to fields with `aria-describedby`, keyboard-friendly controls, and visible focus rings.
+- **Maintainable:** small reusable components (`Button`, `TextInput`, `Field`, and more), with page content kept in separate data files.
 
 > **No backend.** Everything runs in the browser. Submitted form data is only shown on screen and is not saved anywhere.
 
@@ -120,6 +172,7 @@ library-reservation/
 ├── index.html              # HTML entry point, loads Google Fonts
 ├── vite.config.js          # Vite config with the React and Tailwind plugins
 ├── public/                 # Static files served as-is (favicon)
+├── docs/screenshots/       # Images used in this README
 └── src/
     ├── main.jsx            # Mounts the app inside BrowserRouter
     ├── App.jsx             # Routes, with AnimatePresence for page transitions
