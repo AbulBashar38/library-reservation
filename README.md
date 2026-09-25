@@ -15,7 +15,31 @@ This is an individual lab assignment for the **Information System Design and Sof
 | [React](https://react.dev/) | Building the UI from components |
 | [React Router DOM](https://reactrouter.com/) | Moving between the Home and Reservation pages without a page reload |
 | [Tailwind CSS](https://tailwindcss.com/) | Styling and responsive layout with utility classes |
+| [Framer Motion](https://motion.dev/) | Page transitions, scroll reveals, and hover and tap animations |
+| [React Hook Form](https://react-hook-form.com/) | Managing form state, submission, and reset |
+| [Zod](https://zod.dev/) | Defining the validation rules as a single schema |
+| [@hookform/resolvers](https://github.com/react-hook-form/resolvers) | Connecting the Zod schema to React Hook Form |
+| [Sonner](https://sonner.emilkowal.ski/) | Toast notifications for success and error messages |
+| [Lucide React](https://lucide.dev/) | Icons for cards, the navbar, and the footer |
 | [Vite](https://vitejs.dev/) | Development server and production build |
+
+---
+
+## UI and Design
+
+The UI is designed to look clean, modern, and polished, not just to meet the requirements.
+
+- **Consistent design system**: one colour palette, one type scale, and consistent spacing and rounded corners, all set in the Tailwind config.
+- **Clear visual hierarchy**: a bold hero heading, a solid primary button, an outlined secondary button, and cards with soft shadows.
+- **Smooth animations** with Framer Motion:
+  - pages fade and slide in when the route changes
+  - the hero text and buttons animate in on first load
+  - cards fade up one after another as they scroll into view
+  - buttons and cards respond to hover and tap
+  - the mobile menu slides open and closed
+  - error messages animate in below their fields
+- **Friendly feedback**: toast notifications confirm a successful reservation or warn when the form has errors.
+- **Accessible**: form fields have labels, errors are linked to their inputs with `aria-describedby`, buttons have visible focus rings, and colours have enough contrast.
 
 ---
 
@@ -52,18 +76,22 @@ Collects a book reservation request from the user.
 | Additional Notes | `textarea` |
 | Agree to Library Terms | `checkbox` |
 
-**Client-side validation:**
+**Client-side validation** (defined in one Zod schema and applied through React Hook Form):
 
 - **Required fields**: every required field must be filled in.
 - **Email format**: the email must be a valid address, such as `name@example.com`.
 - **Pattern / length rule**: the phone number must match a set format, such as 11 digits for a Bangladeshi mobile number. The notes field has a maximum length.
-- **Cross-field rule**: the Return Date must be after the Pickup Date.
+- **Cross-field rule**: the Return Date must be after the Pickup Date. This is checked with Zod's `.refine()`, and the error is shown under the Return Date field.
 
 **Behaviour:**
 
-- An error message appears **directly below the field** it belongs to, not in a single alert box.
-- **Submit** checks every field. If all fields are valid, a success message and a summary of the entered data appear on screen.
-- **Reset** clears all fields and error messages.
+- An error message appears **directly below the field** it belongs to, not in a single alert box. Invalid fields also get a red border.
+- **Submit** checks every field.
+  - If any field is invalid, an error toast appears and the field errors are shown.
+  - If all fields are valid, a success toast appears and a summary card of the entered data animates in on screen.
+- **Reset** clears all fields and error messages using React Hook Form's `reset()`.
+
+> Toasts are extra feedback only. The required per-field error messages are always shown next to their fields.
 
 ---
 
@@ -125,6 +153,12 @@ npm run preview
 - [ ] Error messages shown next to each field
 - [ ] Submit and Reset buttons
 - [ ] Success message or data summary after a valid submission
+
+### Extras
+
+- [ ] Framer Motion animations (page transitions, scroll reveals, hover effects)
+- [ ] React Hook Form + Zod validation
+- [ ] Toast notifications with Sonner
 
 ---
 
