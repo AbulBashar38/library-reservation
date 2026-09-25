@@ -1,5 +1,8 @@
 # LibReserve: Library Book Reservation System
 
+**Live demo:** [library-reservation-mauve.vercel.app](https://library-reservation-mauve.vercel.app/)  
+**Source code:** [github.com/AbulBashar38/library-reservation](https://github.com/AbulBashar38/library-reservation)
+
 LibReserve is a responsive web app that lets library members reserve a book online and pick it up at the front desk, instead of queuing or phoning in. It has two connected pages: a **landing page** that introduces the library and its featured books, and a **reservation page** where the user fills in a validated form and gets an on-screen confirmation.
 
 It is built with React, React Router, Tailwind CSS, Framer Motion, React Hook Form, Zod, and Sonner. It runs entirely in the browser, with no backend.
@@ -62,18 +65,18 @@ After a valid submission, a success toast appears and the form is replaced by a 
 
 ## Tech Stack
 
-| Tool | Purpose |
-| --- | --- |
-| [React](https://react.dev/) | Building the UI from components |
-| [React Router DOM](https://reactrouter.com/) | Moving between the Home and Reservation pages without a page reload |
-| [Tailwind CSS](https://tailwindcss.com/) | Styling and responsive layout with utility classes |
-| [Framer Motion](https://motion.dev/) | Page transitions, scroll reveals, and hover and tap animations |
-| [React Hook Form](https://react-hook-form.com/) | Managing form state, submission, and reset |
-| [Zod](https://zod.dev/) | Defining the validation rules as a single schema |
-| [@hookform/resolvers](https://github.com/react-hook-form/resolvers) | Connecting the Zod schema to React Hook Form |
-| [Sonner](https://sonner.emilkowal.ski/) | Toast notifications for success and error messages |
-| [Lucide React](https://lucide.dev/) | Icons for cards, the navbar, and the footer |
-| [Vite](https://vitejs.dev/) | Development server and production build |
+| Tool                                                                | Purpose                                                             |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| [React](https://react.dev/)                                         | Building the UI from components                                     |
+| [React Router DOM](https://reactrouter.com/)                        | Moving between the Home and Reservation pages without a page reload |
+| [Tailwind CSS](https://tailwindcss.com/)                            | Styling and responsive layout with utility classes                  |
+| [Framer Motion](https://motion.dev/)                                | Page transitions, scroll reveals, and hover and tap animations      |
+| [React Hook Form](https://react-hook-form.com/)                     | Managing form state, submission, and reset                          |
+| [Zod](https://zod.dev/)                                             | Defining the validation rules as a single schema                    |
+| [@hookform/resolvers](https://github.com/react-hook-form/resolvers) | Connecting the Zod schema to React Hook Form                        |
+| [Sonner](https://sonner.emilkowal.ski/)                             | Toast notifications for success and error messages                  |
+| [Lucide React](https://lucide.dev/)                                 | Icons for cards, the navbar, and the footer                         |
+| [Vite](https://vitejs.dev/)                                         | Development server and production build                             |
 
 ---
 
@@ -120,19 +123,19 @@ Clicking **Reserve** on a book card on the Home page opens `/reserve?book=<id>`,
 
 **Fields (11 fields, 9 input types):**
 
-| Field | Input type | Rules |
-| --- | --- | --- |
-| Full Name | `text` | Required, 3–50 characters, letters only |
-| Email | `email` | Required, valid email format |
-| Phone Number | `tel` | Required, 11 digits starting with `01` (e.g. `01712345678`) |
-| Library Card Number | `text` | Required, format `LIB-12345` |
-| Book | `select` | Required, must be a book from the catalogue |
-| Number of Copies | `number` | Required, whole number from 1 to 3 |
-| Preferred Format | `radio` | Hardcover, Paperback, or E-book |
-| Pickup Date | `date` | Required, not in the past, within the next 30 days |
-| Return Date | `date` | Required, **after the pickup date**, at most 21 days after it |
-| Additional Notes | `textarea` | Optional, up to 300 characters (live counter) |
-| Agree to Library Terms | `checkbox` | Must be ticked |
+| Field                  | Input type | Rules                                                         |
+| ---------------------- | ---------- | ------------------------------------------------------------- |
+| Full Name              | `text`     | Required, 3–50 characters, letters only                       |
+| Email                  | `email`    | Required, valid email format                                  |
+| Phone Number           | `tel`      | Required, 11 digits starting with `01` (e.g. `01712345678`)   |
+| Library Card Number    | `text`     | Required, format `LIB-12345`                                  |
+| Book                   | `select`   | Required, must be a book from the catalogue                   |
+| Number of Copies       | `number`   | Required, whole number from 1 to 3                            |
+| Preferred Format       | `radio`    | Hardcover, Paperback, or E-book                               |
+| Pickup Date            | `date`     | Required, not in the past, within the next 30 days            |
+| Return Date            | `date`     | Required, **after the pickup date**, at most 21 days after it |
+| Additional Notes       | `textarea` | Optional, up to 300 characters (live counter)                 |
+| Agree to Library Terms | `checkbox` | Must be ticked                                                |
 
 **Client-side validation** (defined in one Zod schema in [`src/schemas/reservationSchema.js`](src/schemas/reservationSchema.js) and connected to React Hook Form with `zodResolver`):
 
@@ -240,7 +243,7 @@ library-reservation/
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/AbulBashar38/library-reservation.git
 cd library-reservation
 
 # Install dependencies
@@ -259,38 +262,3 @@ npm run build
 # Preview the production build
 npm run preview
 ```
-
----
-
-## Assignment Requirements Checklist
-
-### Page 1 Checklist
-
-- [x] Navbar with at least 4 links, including a link to Page 2
-- [x] Navbar collapses into a hamburger menu on small screens
-- [x] Hero section with a heading, a description, and primary and secondary CTA buttons
-- [x] At least 3 cards, each with an image or icon, a title, a description, and a button
-- [x] Footer with contact info and social links
-
-### Page 2 Checklist
-
-- [x] At least 7 fields using at least 5 different input types
-- [x] Required-field validation
-- [x] Email format validation
-- [x] Pattern or length validation
-- [x] Cross-field validation
-- [x] Error messages shown next to each field
-- [x] Submit and Reset buttons
-- [x] Success message or data summary after a valid submission
-
-### Extras
-
-- [x] Framer Motion animations (page transitions, scroll reveals, hover effects)
-- [x] React Hook Form + Zod validation
-- [x] Toast notifications with Sonner
-
----
-
-## Author
-
-**Basar**, Information System Design and Software Engineering Lab (individual assignment)
