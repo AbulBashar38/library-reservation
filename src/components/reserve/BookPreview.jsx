@@ -34,7 +34,7 @@ export default function BookPreview({ bookId, copies, format, pickupDate, return
                 exit={{ opacity: 0, rotate: 8, scale: 0.9 }}
                 transition={{ type: 'spring', stiffness: 260, damping: 20 }}
               >
-                <BookCover title={book.title} author={book.author} cover={book.cover} />
+                <BookCover title={book.title} author={book.author} image={book.image} />
               </motion.div>
             ) : (
               <motion.div

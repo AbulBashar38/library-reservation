@@ -1,6 +1,6 @@
 // The library catalogue. Books with `featured: true` are shown on the Home page;
 // every book appears in the reservation form's dropdown.
-// `cover` holds the Tailwind gradient classes used to draw each book cover.
+// `image` points to a cover image in public/covers (covers from the Open Library Covers API).
 export const books = [
   {
     id: 'midnight-library',
@@ -12,7 +12,7 @@ export const books = [
     copies: 3,
     description:
       'Between life and death there is a library, and every book offers a chance to try another life you could have lived.',
-    cover: 'from-indigo-600 via-violet-600 to-purple-500',
+    image: '/covers/midnight-library.jpg',
   },
   {
     id: 'atomic-habits',
@@ -24,7 +24,7 @@ export const books = [
     copies: 5,
     description:
       'A practical guide to building good habits and breaking bad ones through tiny changes that add up to remarkable results.',
-    cover: 'from-amber-400 via-orange-500 to-rose-500',
+    image: '/covers/atomic-habits.jpg',
   },
   {
     id: 'sapiens',
@@ -36,7 +36,7 @@ export const books = [
     copies: 2,
     description:
       'A brief history of humankind, from the first humans to walk the earth to the breakthroughs of the modern age.',
-    cover: 'from-emerald-500 via-teal-500 to-cyan-600',
+    image: '/covers/sapiens.jpg',
   },
   {
     id: 'clean-code',
@@ -48,7 +48,7 @@ export const books = [
     copies: 0,
     description:
       'A handbook of agile software craftsmanship that teaches you to write code that is easy to read, change, and maintain.',
-    cover: 'from-sky-500 via-blue-600 to-indigo-700',
+    image: '/covers/clean-code.jpg',
   },
   {
     id: 'mockingbird',
@@ -59,7 +59,7 @@ export const books = [
     rating: 4.8,
     copies: 4,
     description: 'A story of justice and growing up in a small Southern town, told through the eyes of young Scout Finch.',
-    cover: 'from-stone-600 via-stone-700 to-neutral-800',
+    image: '/covers/mockingbird.jpg',
   },
   {
     id: 'brief-history-of-time',
@@ -70,7 +70,7 @@ export const books = [
     rating: 4.6,
     copies: 2,
     description: 'From the Big Bang to black holes, a clear introduction to the biggest questions about our universe.',
-    cover: 'from-slate-800 via-indigo-900 to-violet-900',
+    image: '/covers/brief-history-of-time.jpg',
   },
   {
     id: 'alchemist',
@@ -81,7 +81,7 @@ export const books = [
     rating: 4.4,
     copies: 6,
     description: 'A young shepherd travels from Spain to Egypt in search of treasure, and finds his purpose along the way.',
-    cover: 'from-yellow-500 via-amber-600 to-orange-700',
+    image: '/covers/alchemist.jpg',
   },
   {
     id: 'deep-work',
@@ -92,7 +92,7 @@ export const books = [
     rating: 4.5,
     copies: 1,
     description: 'Rules for focused success in a distracted world, and how to train your mind to concentrate deeply.',
-    cover: 'from-red-600 via-rose-700 to-pink-800',
+    image: '/covers/deep-work.jpg',
   },
 ]
 

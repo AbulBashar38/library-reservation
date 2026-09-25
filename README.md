@@ -21,7 +21,7 @@ The first thing a visitor sees: a clear headline, a primary **Book Now** button 
 
 ### 2. Featured books
 
-Cards for popular books, each with a cover, genre, rating, short description, live availability, and a **Reserve** button. Clicking **Reserve** opens the form with that book already selected. Books with no copies left offer a waitlist instead.
+Cards for popular books, each with a real cover image, genre, rating, short description, live availability, and a **Reserve** button. Clicking **Reserve** opens the form with that book already selected. Books with no copies left offer a waitlist instead.
 
 ![Featured books section](docs/screenshots/2-featured-books.png)
 
@@ -180,7 +180,7 @@ The layout adapts to mobile, tablet, and desktop screens using Tailwind's respon
 library-reservation/
 ├── index.html              # HTML entry point, loads Google Fonts
 ├── vite.config.js          # Vite config with the React and Tailwind plugins
-├── public/                 # Static files served as-is (favicon)
+├── public/                 # Static files served as-is (favicon, covers/ book images)
 ├── docs/screenshots/       # Images used in this README
 └── src/
     ├── main.jsx            # Mounts the app inside BrowserRouter
@@ -198,7 +198,7 @@ library-reservation/
     │   │   ├── SectionHeading.jsx
     │   │   ├── Reveal.jsx      # Fade-up on scroll (Framer Motion)
     │   │   ├── PageTransition.jsx
-    │   │   ├── BookCover.jsx   # CSS-drawn book cover
+    │   │   ├── BookCover.jsx   # Cover image with a book-spine shadow
     │   │   └── SocialIcons.jsx
     │   ├── home/           # Sections of the Home page
     │   │   ├── Hero.jsx

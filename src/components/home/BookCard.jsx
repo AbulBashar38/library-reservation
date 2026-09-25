@@ -3,7 +3,7 @@ import { Star } from 'lucide-react'
 import BookCover from '../ui/BookCover.jsx'
 import Button from '../ui/Button.jsx'
 
-export default function BookCard({ id, title, author, genre, rating, copies, description, cover }) {
+export default function BookCard({ id, title, author, genre, rating, copies, description, image }) {
   const available = copies > 0
 
   return (
@@ -15,7 +15,7 @@ export default function BookCard({ id, title, author, genre, rating, copies, des
       {/* Cover area */}
       <div className="grid place-items-center bg-linear-to-br from-slate-50 to-slate-100 py-8">
         <div className="transition-transform duration-500 group-hover:scale-105 group-hover:-rotate-3">
-          <BookCover title={title} author={author} cover={cover} />
+          <BookCover title={title} author={author} image={image} />
         </div>
       </div>
 

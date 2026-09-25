@@ -68,7 +68,7 @@ export default function ReservationSuccess({ data, onNewReservation }) {
         <h3 className="text-sm font-semibold text-ink">Reservation summary</h3>
         <div className="mt-5 flex flex-col gap-8 sm:flex-row">
           <div className="flex justify-center sm:block">
-            <BookCover title={book.title} author={book.author} cover={book.cover} />
+            <BookCover title={book.title} author={book.author} image={book.image} />
           </div>
           <dl className="grid flex-1 gap-x-6 gap-y-5 sm:grid-cols-2">
             <SummaryItem label="Full name" value={data.fullName} />
