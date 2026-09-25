@@ -117,10 +117,35 @@ library-reservation/
     ├── App.jsx             # Routes, with AnimatePresence for page transitions
     ├── index.css           # Tailwind import and design tokens (colours, fonts)
     ├── components/
-    │   ├── Layout.jsx      # Navbar + page content + Footer + Toaster
-    │   ├── Navbar.jsx
-    │   ├── Footer.jsx
-    │   └── PageTransition.jsx
+    │   ├── layout/         # Shared on every page
+    │   │   ├── Layout.jsx      # Navbar + page + Footer + Toaster
+    │   │   ├── Navbar.jsx      # Sticky navbar with animated hamburger menu
+    │   │   ├── Footer.jsx      # Contact info, opening hours, social links
+    │   │   └── Logo.jsx
+    │   ├── ui/             # Small reusable building blocks
+    │   │   ├── Button.jsx      # primary / secondary / ghost / light variants
+    │   │   ├── Container.jsx   # Centred max-width wrapper
+    │   │   ├── SectionHeading.jsx
+    │   │   ├── Reveal.jsx      # Fade-up on scroll (Framer Motion)
+    │   │   ├── PageTransition.jsx
+    │   │   ├── BookCover.jsx   # CSS-drawn book cover
+    │   │   └── SocialIcons.jsx
+    │   └── home/           # Sections of the Home page
+    │       ├── Hero.jsx
+    │       ├── Stats.jsx
+    │       ├── Services.jsx + ServiceCard.jsx
+    │       ├── FeaturedBooks.jsx + BookCard.jsx
+    │       ├── HowItWorks.jsx
+    │       └── CtaBanner.jsx
+    ├── data/               # Content kept separate from the components
+    │   ├── books.js
+    │   ├── services.js     # Services, steps, and stats
+    │   ├── navigation.js
+    │   ├── contact.js
+    │   └── social.js
+    ├── hooks/
+    │   ├── useScrollToHash.js  # Scrolls to #section links after navigation
+    │   └── useScrolled.js      # Adds the navbar shadow after scrolling
     └── pages/
         ├── Home.jsx        # Page 1: landing page (/)
         ├── Reserve.jsx     # Page 2: reservation form (/reserve)

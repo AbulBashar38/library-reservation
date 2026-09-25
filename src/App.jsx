@@ -1,6 +1,6 @@
 import { AnimatePresence } from 'framer-motion'
 import { Route, Routes, useLocation } from 'react-router-dom'
-import Layout from './components/Layout.jsx'
+import Layout from './components/layout/Layout.jsx'
 import Home from './pages/Home.jsx'
 import NotFound from './pages/NotFound.jsx'
 import Reserve from './pages/Reserve.jsx'

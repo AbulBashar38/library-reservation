@@ -1,5 +1,5 @@
 import { toast } from 'sonner'
-import PageTransition from '../components/PageTransition.jsx'
+import PageTransition from '../components/ui/PageTransition.jsx'
 
 // Placeholder: the reservation form (React Hook Form + Zod) comes next.
 export default function Reserve() {
