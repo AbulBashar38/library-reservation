@@ -34,6 +34,10 @@ const fields = z.object({
     .min(1, 'Library card number is required')
     .regex(/^LIB-\d{5}$/i, 'Card number must look like LIB-12345'),
 
+  password: z.string().min(1, 'Password is required').min(8, 'Password must be at least 8 characters'),
+
+  confirmPassword: z.string().min(1, 'Please confirm your password'),
+
   book: z
     .string()
     .min(1, 'Please choose a book')
@@ -71,9 +75,17 @@ const fields = z.object({
 const datesFilled = (payload) =>
   fields.pick({ pickupDate: true, returnDate: true }).safeParse(payload.value).success
 
+// Only compare the passwords once both have been typed.
+const passwordsFilled = (payload) => Boolean(payload.value?.password && payload.value?.confirmPassword)
+
 // Cross-field rules: they compare two fields, so they sit on the whole object.
 // Without `when`, Zod would skip them until every other field was valid.
 export const reservationSchema = fields
+  .refine((data) => data.password === data.confirmPassword, {
+    message: 'Passwords do not match',
+    path: ['confirmPassword'],
+    when: passwordsFilled,
+  })
   .refine((data) => data.returnDate > data.pickupDate, {
     message: 'Return date must be after the pickup date',
     path: ['returnDate'],
@@ -90,6 +102,8 @@ export const emptyReservation = {
   email: '',
   phone: '',
   cardNumber: '',
+  password: '',
+  confirmPassword: '',
   book: '',
   copies: 1,
   pickupDate: '',

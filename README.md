@@ -27,13 +27,13 @@ Cards for popular books, each with a cover, genre, rating, short description, li
 
 ### 3. Reservation form
 
-An 11-field form in three numbered steps, with a live preview of the chosen book beside it. Errors appear directly under the field they belong to. In this screenshot, an invalid email and a return date set before the pickup date are both flagged.
+A 13-field form in four numbered steps, with a live preview of the chosen book beside it. Errors appear directly under the field they belong to. In this screenshot, three problems are flagged: an invalid email, a confirmation password that doesn't match, and a return date set before the pickup date.
 
 ![Reservation form showing validation errors](docs/screenshots/3-reservation-form.png)
 
 ### 4. Reservation confirmed
 
-After a valid submission, a success toast appears and the form is replaced by a confirmation with an animated tick, a reference number, and a summary of everything the user entered.
+After a valid submission, a success toast appears and the form is replaced by a confirmation with an animated tick, a reference number, and a summary of everything the user entered. The password is never shown; the summary only says it was set.
 
 ![Reservation confirmation with summary](docs/screenshots/4-reservation-confirmed.png)
 
@@ -115,13 +115,13 @@ Introduces the library to a first-time visitor.
 
 Collects a book reservation request from the user. The page has three parts:
 
-1. **The form**: 11 fields in three numbered sections (Your details, Book details, Pickup and return).
+1. **The form**: 13 fields in four numbered sections (Your details, Secure your reservation, Book details, Pickup and return).
 2. **A live preview sidebar**: shows the chosen book's cover, availability, and the dates and loan period as you type.
 3. **A success screen**: replaces the form after a valid submission, with an animated tick, a reference number, and a summary of everything entered.
 
 Clicking **Reserve** on a book card on the Home page opens `/reserve?book=<id>`, which pre-selects that book.
 
-**Fields (11 fields, 9 input types):**
+**Fields (13 fields, 10 input types):**
 
 | Field                  | Input type | Rules                                                         |
 | ---------------------- | ---------- | ------------------------------------------------------------- |
@@ -129,6 +129,8 @@ Clicking **Reserve** on a book card on the Home page opens `/reserve?book=<id>`,
 | Email                  | `email`    | Required, valid email format                                  |
 | Phone Number           | `tel`      | Required, 11 digits starting with `01` (e.g. `01712345678`)   |
 | Library Card Number    | `text`     | Required, format `LIB-12345`                                  |
+| Password               | `password` | Required, at least 8 characters                               |
+| Confirm Password       | `password` | Required, **must match the password**                         |
 | Book                   | `select`   | Required, must be a book from the catalogue                   |
 | Number of Copies       | `number`   | Required, whole number from 1 to 3                            |
 | Preferred Format       | `radio`    | Hardcover, Paperback, or E-book                               |
@@ -141,8 +143,12 @@ Clicking **Reserve** on a book card on the Home page opens `/reserve?book=<id>`,
 
 - **Required fields**: every required field shows its own "… is required" message.
 - **Email format**: checked with Zod's `.email()`.
-- **Pattern / length rules**: regex patterns for the phone number, library card number, and name; length limits for the name and notes.
-- **Cross-field rules**: the Return Date must be after the Pickup Date, and the loan can be at most 21 days. Both use `.refine()` on the whole object with `path: ['returnDate']`, so the error appears under the Return Date field. The `when` option lets these rules run as soon as both dates are filled in, even while other fields still have errors.
+- **Pattern / length rules**: regex patterns for the phone number, library card number, and name; a minimum length of 8 for the password; length limits for the name and notes.
+- **Cross-field rules**:
+  - Confirm Password must match Password (error shown under Confirm Password).
+  - Return Date must be after Pickup Date, and the loan can be at most 21 days (errors shown under Return Date).
+
+  Each rule uses `.refine()` on the whole object with a `path` that puts the error under the right field. The `when` option lets these rules run as soon as both fields are filled in, even while other fields still have errors. Changing the password or pickup date re-checks the field that depends on it.
 
 **Behaviour:**
 
@@ -208,6 +214,7 @@ library-reservation/
     │   │   ├── TextArea.jsx    # With character counter
     │   │   ├── RadioCards.jsx
     │   │   ├── Checkbox.jsx
+    │   │   ├── PasswordInput.jsx     # With show/hide toggle
     │   │   └── styles.js       # Shared input classes and ARIA helper
     │   └── reserve/        # Parts of the Reservation page
     │       ├── ReserveHeader.jsx

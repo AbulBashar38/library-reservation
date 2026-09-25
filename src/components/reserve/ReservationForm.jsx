@@ -17,6 +17,7 @@ import { addDays, today } from '../../utils/date.js'
 import Checkbox from '../form/Checkbox.jsx'
 import RadioCards from '../form/RadioCards.jsx'
 import SelectInput from '../form/SelectInput.jsx'
+import PasswordInput from '../form/PasswordInput.jsx'
 import TextArea from '../form/TextArea.jsx'
 import TextInput from '../form/TextInput.jsx'
 import Button from '../ui/Button.jsx'
@@ -144,7 +145,36 @@ export default function ReservationForm({ defaultBook = '', onSuccess }) {
           />
         </FormSection>
 
-        <FormSection step={2} title="Book details" description="Pick the book and how you would like it.">
+        <FormSection
+          step={2}
+          title="Secure your reservation"
+          description="Create a password to view or cancel this reservation later."
+        >
+          <PasswordInput
+            id="password"
+            label="Password"
+            required
+            placeholder="Create a password"
+            autoComplete="new-password"
+            hint="At least 8 characters"
+            registration={register('password', {
+              // If the confirmation is already filled in, re-check that it still matches
+              onChange: () => getValues('confirmPassword') && trigger('confirmPassword'),
+            })}
+            error={errors.password?.message}
+          />
+          <PasswordInput
+            id="confirmPassword"
+            label="Confirm password"
+            required
+            placeholder="Type it again"
+            autoComplete="new-password"
+            registration={register('confirmPassword')}
+            error={errors.confirmPassword?.message}
+          />
+        </FormSection>
+
+        <FormSection step={3} title="Book details" description="Pick the book and how you would like it.">
           <SelectInput
             id="book"
             label="Book"
@@ -181,7 +211,7 @@ export default function ReservationForm({ defaultBook = '', onSuccess }) {
           </div>
         </FormSection>
 
-        <FormSection step={3} title="Pickup and return" description="Choose when you will collect and return it.">
+        <FormSection step={4} title="Pickup and return" description="Choose when you will collect and return it.">
           <TextInput
             id="pickupDate"
             type="date"

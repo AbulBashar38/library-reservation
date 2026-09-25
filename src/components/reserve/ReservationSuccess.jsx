@@ -82,6 +82,8 @@ export default function ReservationSuccess({ data, onNewReservation }) {
             <SummaryItem label="Return date" value={formatDate(data.returnDate)} />
             <SummaryItem label="Loan period" value={`${days} day${days === 1 ? '' : 's'}`} />
             <SummaryItem label="Terms" value="Accepted" />
+            {/* Never show the password itself */}
+            <SummaryItem label="Password" value="Set (hidden for your security)" />
             {data.notes && <SummaryItem label="Notes" value={data.notes} wide />}
           </dl>
         </div>
