@@ -105,6 +105,30 @@ The layout adapts to mobile, tablet, and desktop screens using Tailwind's respon
 
 ---
 
+## Project Structure
+
+```text
+library-reservation/
+├── index.html              # HTML entry point, loads Google Fonts
+├── vite.config.js          # Vite config with the React and Tailwind plugins
+├── public/                 # Static files served as-is (favicon)
+└── src/
+    ├── main.jsx            # Mounts the app inside BrowserRouter
+    ├── App.jsx             # Routes, with AnimatePresence for page transitions
+    ├── index.css           # Tailwind import and design tokens (colours, fonts)
+    ├── components/
+    │   ├── Layout.jsx      # Navbar + page content + Footer + Toaster
+    │   ├── Navbar.jsx
+    │   ├── Footer.jsx
+    │   └── PageTransition.jsx
+    └── pages/
+        ├── Home.jsx        # Page 1: landing page (/)
+        ├── Reserve.jsx     # Page 2: reservation form (/reserve)
+        └── NotFound.jsx    # Fallback for unknown URLs
+```
+
+---
+
 ## Getting Started
 
 **Prerequisites:** [Node.js](https://nodejs.org/) 18 or newer, and npm.
